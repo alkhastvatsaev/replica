@@ -194,7 +194,12 @@ header {
 }
 
 .wa-buy-btn.vca {
-  background-color: #003366; /* Bleu Royal Van Cleef */
+  background-color: #1B3022; /* Vert Forêt profond VCA */
+  border: 0.5px solid rgba(225, 193, 110, 0.2);
+}
+
+.wa-buy-btn.vca span {
+  color: #E1C16E; /* Or Doré VCA */
 }
 
 .wa-buy-btn:active {
