@@ -34,8 +34,8 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: 70px;
-  padding-top: env(safe-area-inset-top); /* Protection encoche iPhone */
+  height: calc(env(safe-area-inset-top) + 44px);
+  padding-top: env(safe-area-inset-top);
   display: flex;
   justify-content: center;
   align-items: center;
