@@ -1,11 +1,11 @@
 {
-  "name": "Cartier Privé",
-  "short_name": "Cartier",
-  "description": "Accès Privilège - Créations exclusives Cartier.",
+  "name": "MAISON 7",
+  "short_name": "MAISON 7",
+  "description": "Accès Privilège - Haute Joaillerie & Horlogerie.",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#E1002A",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "images/icon-192.png",
