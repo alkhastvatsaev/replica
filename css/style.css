@@ -94,10 +94,15 @@ header {
 }
 
 .brand-divider img {
-  height: 25px;
   width: auto;
-  opacity: 0.8;
+  opacity: 0.9;
+  filter: grayscale(1) invert(0);
 }
+
+/* Logique de proportionnalité optique */
+.logo-cartier { height: 26px !important; } /* Script fin nécessite plus de hauteur */
+.logo-vca     { height: 22px !important; } /* Bloc dense nécessite moins de hauteur */
+.logo-bulgari { height: 18px !important; } /* Entre les deux */
 
 
 
