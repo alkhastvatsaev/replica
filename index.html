@@ -32,7 +32,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="1075">1 075 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="love" data-ref="CRB4084600" onclick="openCheckout('Bague Love', 1075, 'CRB4084600')">
+                    <div class="wa-buy-btn cartier" data-product="love" data-ref="CRB4084600" data-img="images/love-ring.png" onclick="openCheckout('Bague Love', 1075, 'CRB4084600')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="725">725 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="clou" data-ref="CRB4225900" onclick="openCheckout('Bague Juste un Clou', 725, 'CRB4225900')">
+                    <div class="wa-buy-btn cartier" data-product="clou" data-ref="CRB4225900" data-img="images/clou-ring.png" onclick="openCheckout('Bague Juste un Clou', 725, 'CRB4225900')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="1275">1 275 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="clash" data-ref="CRB4229800" onclick="openCheckout('Bague Clash', 1275, 'CRB4229800')">
+                    <div class="wa-buy-btn cartier" data-product="clash" data-ref="CRB4229800" data-img="images/clash-ring.png" onclick="openCheckout('Bague Clash', 1275, 'CRB4229800')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="3925">3 925 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="bracelet" data-ref="CRB6035517" onclick="openCheckout('Bracelet Love', 3925, 'CRB6035517')">
+                    <div class="wa-buy-btn cartier" data-product="bracelet" data-ref="CRB6035517" data-img="images/love-bracelet.png" onclick="openCheckout('Bracelet Love', 3925, 'CRB6035517')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="925">925 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="trinity" data-ref="CRB4052700" onclick="openCheckout('Bague Trinity', 925, 'CRB4052700')">
+                    <div class="wa-buy-btn cartier" data-product="trinity" data-ref="CRB4052700" data-img="images/trinity-ring.png" onclick="openCheckout('Bague Trinity', 925, 'CRB4052700')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="2625">2 625 €</span>
                     </div>
-                    <div class="wa-buy-btn vca" data-product="alhambra" data-ref="VCARA41800" onclick="openCheckout('Bracelet Alhambra', 2625, 'VCARA41800')">
+                    <div class="wa-buy-btn vca" data-product="alhambra" data-ref="VCARA41800" data-img="images/alhambra-bracelet.png" onclick="openCheckout('Bracelet Alhambra', 2625, 'VCARA41800')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="3325">3 325 €</span>
                     </div>
-                    <div class="wa-buy-btn vca" data-product="reversible" data-ref="VCARPGV500" onclick="openCheckout('Bague Réversible', 3325, 'VCARPGV500')">
+                    <div class="wa-buy-btn vca" data-product="reversible" data-ref="VCARPGV500" data-img="images/reversible-ring.png" onclick="openCheckout('Bague Réversible', 3325, 'VCARPGV500')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="2225">2 225 €</span>
                     </div>
-                    <div class="wa-buy-btn bulgari" data-product="serpenti-ring" data-ref="360461" onclick="openCheckout('Bague Serpenti', 2225, '360461')">
+                    <div class="wa-buy-btn bulgari" data-product="serpenti-ring" data-ref="360461" data-img="bulgari/360461.png" onclick="openCheckout('Bague Serpenti', 2225, '360461')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="6800">6 800 €</span>
                     </div>
-                    <div class="wa-buy-btn bulgari" data-product="serpenti-bracelet" data-ref="360701" onclick="openCheckout('Bracelet Serpenti', 6800, '360701')">
+                    <div class="wa-buy-btn bulgari" data-product="serpenti-bracelet" data-ref="360701" data-img="bulgari/360701.png" onclick="openCheckout('Bracelet Serpenti', 6800, '360701')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -277,24 +277,20 @@
             return symbolAfter.includes(symbol) ? `${formatted} ${symbol}` : `${symbol} ${formatted}`;
         }
 
+        // --- FONCTION WA UNIVERSELLE (Evolutive) ---
         function openCheckout(name, eurPrice, ref) {
+            const btn = event.currentTarget; // On récupère le bouton cliqué
+            const imgPath = btn.getAttribute('data-img'); // Récupère le lien auto
+            
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
             const rate = currentRates[currentCurrency] || 1;
             const priceLocal = convertAndRound(eurPrice, rate);
             const priceStr = formatPrice(priceLocal, currentSymbol, currentCurrency);
             
-            // On récupère le chemin de l'image via l'ID produit (logiciel)
-            const imgPath = document.querySelector(`[data-product="${ref.toLowerCase()}"]`) ? "" : ""; // On simplifie
-            // Plus fiable : On repasse par l'ID ou on construit le nom du fichier
-            const imgName = name.toLowerCase().replace(/ /g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
-            // On utilise l'ID produit pour faire simple
-            const productID = document.querySelector(`[onclick*="${ref}"]`).getAttribute('data-product');
-            const imgUrl = `${window.location.origin}/images/${productID === 'love' ? 'love-ring' : productID === 'clou' ? 'clou-ring' : productID === 'clash' ? 'clash-ring' : productID === 'bracelet' ? 'love-bracelet' : productID === 'trinity' ? 'trinity-ring' : productID === 'alhambra' ? 'alhambra-bracelet' : 'reversible-ring'}.png`;
-
+            const imgUrl = `${window.location.origin}/${imgPath}`;
             const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})\n\nPhoto : ${imgUrl}`;
-            const url = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
             
-            window.location.href = url;
+            window.location.href = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
         }
 
         init();
