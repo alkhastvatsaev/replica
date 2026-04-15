@@ -237,18 +237,23 @@
             return symbolAfter.includes(symbol) ? `${formatted} ${symbol}` : `${symbol} ${formatted}`;
         }
 
-        // --- FONCTION DIRECTE ROBUSTE ---
         function openCheckout(name, eurPrice, ref) {
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
             const rate = currentRates[currentCurrency] || 1;
             const priceLocal = convertAndRound(eurPrice, rate);
             const priceStr = formatPrice(priceLocal, currentSymbol, currentCurrency);
             
-            const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})`;
+            // On récupère le chemin de l'image via l'ID produit (logiciel)
+            const imgPath = document.querySelector(`[data-product="${ref.toLowerCase()}"]`) ? "" : ""; // On simplifie
+            // Plus fiable : On repasse par l'ID ou on construit le nom du fichier
+            const imgName = name.toLowerCase().replace(/ /g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
+            // On utilise l'ID produit pour faire simple
+            const productID = document.querySelector(`[onclick*="${ref}"]`).getAttribute('data-product');
+            const imgUrl = `${window.location.origin}/images/${productID === 'love' ? 'love-ring' : productID === 'clou' ? 'clou-ring' : productID === 'clash' ? 'clash-ring' : productID === 'bracelet' ? 'love-bracelet' : productID === 'trinity' ? 'trinity-ring' : productID === 'alhambra' ? 'alhambra-bracelet' : 'reversible-ring'}.png`;
+
+            const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})\n\nPhoto : ${imgUrl}`;
             const url = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
             
-            // On utilise location.href pour les mobiles : cela ouvre l'App WhatsApp
-            // et garde la page d'accueil active juste en dessous.
             window.location.href = url;
         }
 
