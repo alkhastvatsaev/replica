@@ -237,16 +237,19 @@
             return symbolAfter.includes(symbol) ? `${formatted} ${symbol}` : `${symbol} ${formatted}`;
         }
 
-        // --- FONCTION DIRECTE AVEC RÉFÉRENCE ---
+        // --- FONCTION DIRECTE ROBUSTE ---
         function openCheckout(name, eurPrice, ref) {
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
             const rate = currentRates[currentCurrency] || 1;
             const priceLocal = convertAndRound(eurPrice, rate);
             const priceStr = formatPrice(priceLocal, currentSymbol, currentCurrency);
             
-            // Nouveau format de message avec référence
             const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})`;
-            window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`, "_blank");
+            const url = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
+            
+            // On utilise location.href pour les mobiles : cela ouvre l'App WhatsApp
+            // et garde la page d'accueil active juste en dessous.
+            window.location.href = url;
         }
 
         init();
