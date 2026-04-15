@@ -12,19 +12,72 @@ let currentCurrency = 'EUR';
 let currentSymbol = '€';
 let currentRates = { 'EUR': 1, 'USD': 1.08, 'AED': 3.97, 'RUB': 98.5, 'KZT': 485 };
 
-// ─── LOGIQUE DE CONVERSION ───────────────────────────────────────
+// ─── LOGIQUE DE CONVERSION & ARRONDIS ────────────────────────────
 async function fetchRates() {
     try {
         const response = await fetch('https://api.exchangerate-api.com/v4/latest/EUR');
         const data = await response.json();
         currentRates = data.rates;
+        
+        // Détection par IP pour la monnaie et la langue
+        await autoDetectUser();
+        
         renderAllSections();
-    } catch (e) { console.error("Erreur taux:", e); }
+    } catch (e) { 
+        console.error("Erreur initialisation:", e);
+        renderAllSections(); // On affiche quand même en EUR par défaut
+    }
+}
+
+async function autoDetectUser() {
+    try {
+        const geoReq = await fetch('https://ipapi.co/json/');
+        const geo = await geoReq.json();
+        
+        const country = geo.country_code; // FR, US, AE, RU, KZ...
+        
+        if (['AE', 'QA', 'SA', 'OM'].includes(country)) {
+            setCurrency('AED', 'د.إ');
+            setLanguage('ar');
+        } else if (['RU', 'BY'].includes(country)) {
+            setCurrency('RUB', '₽');
+            setLanguage('ru');
+        } else if (['KZ'].includes(country)) {
+            setCurrency('KZT', '₸');
+            setLanguage('ru');
+        } else if (['US', 'GB', 'CA'].includes(country)) {
+            setCurrency('USD', '$');
+            setLanguage('en');
+        } else {
+            setCurrency('EUR', '€');
+            setLanguage('fr');
+        }
+    } catch (e) {
+        // Fallback sur le fuseau horaire si l'IP API échoue
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (tz.includes('Dubai')) setCurrency('AED', 'د.إ');
+        else if (tz.includes('Moscow')) { setCurrency('RUB', '₽'); setLanguage('ru'); }
+        else if (tz.includes('Almaty')) { setCurrency('KZT', '₸'); setLanguage('ru'); }
+    }
+}
+
+function smartRound(value, currency) {
+    if (currency === 'EUR' || currency === 'USD') {
+        // Arrondi au 5 le plus proche (ex: 2153 -> 2155)
+        return Math.ceil(value / 5) * 5;
+    }
+    if (currency === 'AED') {
+        // Arrondi à la dizaine (ex: 7852 -> 7850)
+        return Math.round(value / 10) * 10;
+    }
+    // Pour les grosses devises (RUB, KZT), arrondi à la centaine
+    return Math.round(value / 100) * 100;
 }
 
 function convertAndRound(eurPrice) {
-    const salePrice = eurPrice / 2; // Règle des -50% appliquée ici une fois pour toutes
-    return Math.round(salePrice * (currentRates[currentCurrency] || 1));
+    const salePrice = eurPrice / 2;
+    const rawConverted = salePrice * (currentRates[currentCurrency] || 1);
+    return smartRound(rawConverted, currentCurrency);
 }
 
 function formatPrice(amount) {
