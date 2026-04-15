@@ -63,7 +63,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: 0.8; /* Rapproche les deux lignes */
+  line-height: 1.1; /* Plus d'espace */
   padding-top: 5px;
 }
 
@@ -79,9 +79,9 @@ header {
 .logo-bottom {
   font-family: var(--font-title);
   font-weight: 900;
-  font-size: 1.1rem; /* Même taille pour l'uniformité */
+  font-size: 1.1rem;
   color: #000;
-  margin-top: 2px;
+  margin-top: 5px; /* Espace de 1mm environ */
 }
 
 .brand-divider {
