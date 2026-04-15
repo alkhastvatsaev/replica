@@ -57,9 +57,13 @@ header {
   backdrop-filter: blur(20px);
 }
 
-.logo-img {
-  height: 22px; /* Plus petit et élégant sur mobile */
-  width: auto;
+.logo-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900; /* Bold intense */
+  font-size: 1.2rem;
+  letter-spacing: 5px; /* Espacement luxe */
+  color: #000;
+  text-transform: uppercase;
   display: block;
 }
 
