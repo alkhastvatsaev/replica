@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="css/style.css">
     
-    <title>CARTIER CATALOG</title>
+    <title>REPLICA</title>
 </head>
 <body>
     <div class="app-viewport">
@@ -24,13 +24,13 @@
                 <div class="img-container">
                     <img src="/images/love-ring.png" class="minimal-img" alt="Bague Love">
                 </div>
-                <h2>Bague Love</h2>
+                <h2 data-name="Bague Love" data-name-ru="Кольцо Love" data-name-en="Love Ring" data-name-ar="خاتم Love">Bague Love</h2>
                 <div class="price-row">
                     <div class="price-box">
-                        <span class="sale-price">945 €</span>
+                        <span class="sale-price" data-eur="945">945 €</span>
                     </div>
-                    <div class="wa-buy-btn" onclick="openCheckout('Bague LOVE', 945)">
-                        MESSAGE SELLER
+                    <div class="wa-buy-btn" data-product="love" onclick="openCheckout('Bague Love', 945)">
+                        <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
             </div>
@@ -39,13 +39,13 @@
                 <div class="img-container">
                     <img src="/images/clou-ring.png" class="minimal-img" alt="Bague Juste un Clou">
                 </div>
-                <h2>Bague Juste un Clou</h2>
+                <h2 data-name="Bague Juste un Clou" data-name-ru="Кольцо Juste un Clou" data-name-en="Juste un Clou Ring" data-name-ar="خاتم Juste un Clou">Bague Juste un Clou</h2>
                 <div class="price-row">
                     <div class="price-box">
-                        <span class="sale-price">1 015 €</span>
+                        <span class="sale-price" data-eur="1015">1 015 €</span>
                     </div>
-                    <div class="wa-buy-btn" onclick="openCheckout('Bague Juste un Clou', 1015)">
-                        MESSAGE SELLER
+                    <div class="wa-buy-btn" data-product="clou" onclick="openCheckout('Bague Juste un Clou', 1015)">
+                        <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
             </div>
@@ -54,13 +54,13 @@
                 <div class="img-container">
                     <img src="/images/clash-ring.png" class="minimal-img" alt="Bague Clash">
                 </div>
-                <h2>Bague Clash de Cartier</h2>
+                <h2 data-name="Bague Clash de Cartier" data-name-ru="Кольцо Clash" data-name-en="Clash Ring" data-name-ar="خاتم Clash">Bague Clash de Cartier</h2>
                 <div class="price-row">
                     <div class="price-box">
-                        <span class="sale-price">1 875 €</span>
+                        <span class="sale-price" data-eur="1875">1 875 €</span>
                     </div>
-                    <div class="wa-buy-btn" onclick="openCheckout('Bague Clash', 1875)">
-                        MESSAGE SELLER
+                    <div class="wa-buy-btn" data-product="clash" onclick="openCheckout('Bague Clash', 1875)">
+                        <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
             </div>
@@ -69,13 +69,13 @@
                 <div class="img-container">
                     <img src="/images/love-bracelet.png" class="minimal-img" alt="Bracelet Love">
                 </div>
-                <h2>Bracelet Love</h2>
+                <h2 data-name="Bracelet Love" data-name-ru="Браслет Love" data-name-en="Love Bracelet" data-name-ar="سوار Love">Bracelet Love</h2>
                 <div class="price-row">
                     <div class="price-box">
-                        <span class="sale-price">3 725 €</span>
+                        <span class="sale-price" data-eur="3725">3 725 €</span>
                     </div>
-                    <div class="wa-buy-btn" onclick="openCheckout('Bracelet Love', 3725)">
-                        MESSAGE SELLER
+                    <div class="wa-buy-btn" data-product="bracelet" onclick="openCheckout('Bracelet Love', 3725)">
+                        <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
             </div>
@@ -84,13 +84,13 @@
                 <div class="img-container">
                     <img src="/images/trinity-ring.png" class="minimal-img" alt="Bague Trinity">
                 </div>
-                <h2>Bague Trinity</h2>
+                <h2 data-name="Bague Trinity" data-name-ru="Кольцо Trinity" data-name-en="Trinity Ring" data-name-ar="خاتم Trinity">Bague Trinity</h2>
                 <div class="price-row">
                     <div class="price-box">
-                        <span class="sale-price">1 015 €</span>
+                        <span class="sale-price" data-eur="1015">1 015 €</span>
                     </div>
-                    <div class="wa-buy-btn" onclick="openCheckout('Bague Trinity', 1015)">
-                        MESSAGE SELLER
+                    <div class="wa-buy-btn" data-product="trinity" onclick="openCheckout('Bague Trinity', 1015)">
+                        <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
             </div>
@@ -102,29 +102,227 @@
     <div class="modal-overlay" id="overlay" onclick="closeCheckout()"></div>
     <div class="checkout-modal" id="checkout-modal">
         <div class="modal-header">
-            <h3>Fiche de commande</h3>
-            <p id="selected-product" style="font-family: var(--font-title); font-size: 0.8rem; letter-spacing: 1px; color: #111; margin-top: 10px;"></p>
+            <h3 data-i18n="order_title">Fiche de commande</h3>
+            <p id="selected-product"></p>
         </div>
         <div class="checkout-form">
-            <input type="text" id="cust-name" placeholder="Nom complet" oninput="this.classList.remove('error')">
-            <input type="tel" id="cust-phone" placeholder="Numéro de téléphone" oninput="this.classList.remove('error')">
-            <input type="text" id="cust-address" placeholder="Adresse complète" oninput="this.classList.remove('error')">
-            <input type="text" id="cust-city" placeholder="Ville et Code Postal" oninput="this.classList.remove('error')">
+            <input type="text" id="cust-name" data-i18n-placeholder="name" placeholder="Nom complet" oninput="this.classList.remove('error')">
+            <input type="tel" id="cust-phone" data-i18n-placeholder="phone" placeholder="Numéro de téléphone" oninput="this.classList.remove('error')">
+            <input type="text" id="cust-address" data-i18n-placeholder="address" placeholder="Adresse complète" oninput="this.classList.remove('error')">
+            <input type="text" id="cust-city" data-i18n-placeholder="city" placeholder="Ville et Code Postal" oninput="this.classList.remove('error')">
             
             <div class="wa-confirm-btn" onclick="sendToWhatsApp()">
-                ENVOYER AU VENDEUR
+                <span data-i18n="send">ENVOYER AU VENDEUR</span>
             </div>
         </div>
     </div>
 
     <script>
-        let currentProduct = "";
-        let currentPrice = 0;
+        // ─── I18N CONFIG ────────────────────────────────────────────────
+        const TRANSLATIONS = {
+            fr: {
+                buy: "MESSAGE SELLER",
+                order_title: "Fiche de commande",
+                name: "Nom complet",
+                phone: "Numéro de téléphone",
+                address: "Adresse complète",
+                city: "Ville et Code Postal",
+                send: "ENVOYER AU VENDEUR",
+                wa_hello: "Bonjour, voici ma commande",
+                wa_item: "Article",
+                wa_price: "Prix",
+                wa_client: "Client",
+                wa_tel: "Tél",
+                wa_address: "Adresse",
+                wa_thanks: "Merci !"
+            },
+            ru: {
+                buy: "НАПИСАТЬ ПРОДАВЦУ",
+                order_title: "Оформление заказа",
+                name: "Полное имя",
+                phone: "Номер телефона",
+                address: "Полный адрес",
+                city: "Город и индекс",
+                send: "ОТПРАВИТЬ ПРОДАВЦУ",
+                wa_hello: "Здравствуйте, вот мой заказ",
+                wa_item: "Товар",
+                wa_price: "Цена",
+                wa_client: "Клиент",
+                wa_tel: "Тел",
+                wa_address: "Адрес",
+                wa_thanks: "Спасибо!"
+            },
+            en: {
+                buy: "MESSAGE SELLER",
+                order_title: "Order Details",
+                name: "Full name",
+                phone: "Phone number",
+                address: "Full address",
+                city: "City and Postal Code",
+                send: "SEND TO SELLER",
+                wa_hello: "Hello, here is my order",
+                wa_item: "Item",
+                wa_price: "Price",
+                wa_client: "Customer",
+                wa_tel: "Tel",
+                wa_address: "Address",
+                wa_thanks: "Thank you!"
+            },
+            ar: {
+                buy: "مراسلة البائع",
+                order_title: "تفاصيل الطلب",
+                name: "الاسم الكامل",
+                phone: "رقم الهاتف",
+                address: "العنوان الكامل",
+                city: "المدينة والرمز البريدي",
+                send: "إرسال إلى البائع",
+                wa_hello: "مرحبًا، إليك طلبي",
+                wa_item: "المنتج",
+                wa_price: "السعر",
+                wa_client: "العميل",
+                wa_tel: "هاتف",
+                wa_address: "العنوان",
+                wa_thanks: "شكراً!"
+            }
+        };
 
-        function openCheckout(name, price) {
+        // Country → { lang, currency, symbol }
+        const COUNTRY_MAP = {
+            // Francophone
+            FR: { lang: 'fr', currency: 'EUR', symbol: '€' },
+            BE: { lang: 'fr', currency: 'EUR', symbol: '€' },
+            CH: { lang: 'fr', currency: 'CHF', symbol: 'CHF' },
+            MA: { lang: 'fr', currency: 'MAD', symbol: 'MAD' },
+            DZ: { lang: 'fr', currency: 'DZD', symbol: 'DZD' },
+            TN: { lang: 'fr', currency: 'TND', symbol: 'TND' },
+            // Russophone
+            RU: { lang: 'ru', currency: 'RUB', symbol: '₽' },
+            KZ: { lang: 'ru', currency: 'KZT', symbol: '₸' },
+            UA: { lang: 'ru', currency: 'UAH', symbol: '₴' },
+            BY: { lang: 'ru', currency: 'BYN', symbol: 'BYN' },
+            UZ: { lang: 'ru', currency: 'UZS', symbol: 'UZS' },
+            // Anglophone
+            GB: { lang: 'en', currency: 'GBP', symbol: '£' },
+            US: { lang: 'en', currency: 'USD', symbol: '$' },
+            CA: { lang: 'en', currency: 'CAD', symbol: 'CA$' },
+            AU: { lang: 'en', currency: 'AUD', symbol: 'A$' },
+            // Arabophone
+            AE: { lang: 'ar', currency: 'AED', symbol: 'AED' },
+            SA: { lang: 'ar', currency: 'SAR', symbol: 'SAR' },
+            QA: { lang: 'ar', currency: 'QAR', symbol: 'QAR' },
+            KW: { lang: 'ar', currency: 'KWD', symbol: 'KWD' },
+        };
+
+        // ─── STATE ───────────────────────────────────────────────────────
+        let currentLang = 'fr';
+        let currentCurrency = 'EUR';
+        let currentSymbol = '€';
+        let currentRates = { EUR: 1 };
+        let currentProduct = "";
+        let currentPriceEUR = 0;
+        let currentPriceConverted = 0;
+
+        // ─── INIT ────────────────────────────────────────────────────────
+        async function init() {
+            try {
+                // 1. Détection pays via IP
+                const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+                const country = geo.country_code || 'FR';
+                const config = COUNTRY_MAP[country] || { lang: 'en', currency: 'EUR', symbol: '€' };
+                currentLang = config.lang;
+                currentCurrency = config.currency;
+                currentSymbol = config.symbol;
+
+                // 2. Taux de change EUR → devise locale
+                if (currentCurrency !== 'EUR') {
+                    const rates = await fetch(`https://open.er-api.com/v6/latest/EUR`).then(r => r.json());
+                    if (rates.rates) currentRates = rates.rates;
+                }
+
+                // 3. Appliquer traductions + prix
+                applyLanguage(currentLang);
+                convertAllPrices();
+
+                // 4. RTL pour l'arabe
+                if (currentLang === 'ar') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                }
+
+            } catch (e) {
+                // Fallback silencieux → FR/EUR
+                console.log('Geoloc fallback:', e);
+            }
+        }
+
+        function applyLanguage(lang) {
+            const t = TRANSLATIONS[lang] || TRANSLATIONS['fr'];
+
+            // Textes i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+
+            // Placeholders i18n
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+
+            // Noms produits
+            document.querySelectorAll('h2[data-name]').forEach(el => {
+                const name = el.getAttribute(`data-name-${lang}`) || el.getAttribute('data-name');
+                if (name) el.textContent = name;
+            });
+
+            // Onclick des boutons — mettre à jour le nom du produit aussi
+            document.querySelectorAll('[data-product]').forEach(btn => {
+                const product = btn.getAttribute('data-product');
+                const h2 = btn.closest('.product-card')?.querySelector('h2');
+                const priceSpan = btn.closest('.product-card')?.querySelector('.sale-price');
+                const eurPrice = priceSpan ? parseInt(priceSpan.getAttribute('data-eur')) : 0;
+                if (h2) {
+                    btn.onclick = () => openCheckout(h2.textContent, eurPrice);
+                }
+            });
+        }
+
+        function convertAllPrices() {
+            const rate = currentRates[currentCurrency] || 1;
+            document.querySelectorAll('.sale-price[data-eur]').forEach(el => {
+                const eur = parseInt(el.getAttribute('data-eur'));
+                const converted = convertAndRound(eur, rate);
+                el.textContent = formatPrice(converted, currentSymbol, currentCurrency);
+            });
+        }
+
+        function convertAndRound(eurAmount, rate) {
+            const raw = eurAmount * rate;
+            // Arrondir au 5 ou 0 le plus proche
+            if (raw < 1000) return Math.round(raw / 5) * 5;
+            if (raw < 10000) return Math.round(raw / 50) * 50;
+            return Math.round(raw / 500) * 500;
+        }
+
+        function formatPrice(amount, symbol, currency) {
+            // Formater avec séparateurs
+            const formatted = amount.toLocaleString();
+            // Placement du symbole selon la devise
+            const symbolAfter = ['€', '₽', '₸', '₴'];
+            return symbolAfter.includes(symbol)
+                ? `${formatted} ${symbol}`
+                : `${symbol} ${formatted}`;
+        }
+
+        // ─── CHECKOUT ────────────────────────────────────────────────────
+        function openCheckout(name, eurPrice) {
             currentProduct = name;
-            currentPrice = price;
-            document.getElementById('selected-product').innerText = name.toUpperCase();
+            currentPriceEUR = eurPrice;
+            const rate = currentRates[currentCurrency] || 1;
+            currentPriceConverted = convertAndRound(eurPrice, rate);
+
+            const productLabel = `${name} — ${formatPrice(currentPriceConverted, currentSymbol, currentCurrency)}`;
+            document.getElementById('selected-product').innerText = productLabel.toUpperCase();
             document.getElementById('checkout-modal').classList.add('active');
             document.getElementById('overlay').classList.add('active');
         }
@@ -151,26 +349,25 @@
                     field.classList.remove('error');
                 }
             });
-
             if (hasError) return;
 
-            const name = fields[0].value;
-            const phone = fields[1].value;
-            const addr = fields[2].value;
-            const city = fields[3].value;
+            const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
+            const priceStr = formatPrice(currentPriceConverted, currentSymbol, currentCurrency);
 
-            const message = `Bonjour, voici une nouvelle demande de commande :
-- Bijou : ${currentProduct}
-- Prix : ${currentPrice} €
-- Client : ${name}
-- Tél : ${phone}
-- Adresse : ${addr}, ${city}
+            const message = `${t.wa_hello} :
+- ${t.wa_item} : ${currentProduct}
+- ${t.wa_price} : ${priceStr}
+- ${t.wa_client} : ${fields[0].value}
+- ${t.wa_tel} : ${fields[1].value}
+- ${t.wa_address} : ${fields[2].value}, ${fields[3].value}
 
-Merci !`;
+${t.wa_thanks}`;
 
-            const waUrl = "https://wa.me/?text=" + encodeURIComponent(message);
-            window.open(waUrl, "_blank");
+            window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
         }
+
+        // ─── START ───────────────────────────────────────────────────────
+        init();
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
