@@ -175,18 +175,26 @@ header {
 .wa-buy-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 8px 15px;
-  background-color: #1A6BFF;
+  justify-content: center;
+  padding: 12px 15px;
   color: #FFF;
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  border-radius: 6px;
+  letter-spacing: 1.5px;
+  border-radius: 4px; /* Plus premium */
   transition: transform 0.1s ease;
   cursor: pointer;
+  flex-grow: 1;
+}
+
+.wa-buy-btn.cartier {
+  background-color: #700016; /* Bordeaux Cartier */
+}
+
+.wa-buy-btn.vca {
+  background-color: #004b2b; /* Vert VCA */
 }
 
 .wa-buy-btn:active {
