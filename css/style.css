@@ -57,15 +57,30 @@ header {
   backdrop-filter: blur(20px);
 }
 
-.logo-text {
+.logo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.8; /* Rapproche les deux lignes */
+  padding-top: 5px;
+}
+
+.logo-top {
   font-family: var(--font-title);
-  font-weight: 900; /* Ultra-Bold / Black */
-  font-size: 1.2rem;
-  letter-spacing: 0.2em; /* Réduit pour laisser de la place aux lettres épaisses */
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  margin-left: 0.4em;
   color: #000;
-  text-transform: uppercase;
-  display: block;
-  margin-left: 0.2em;
+}
+
+.logo-bottom {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: 5px;
 }
 
 .brand-divider {
