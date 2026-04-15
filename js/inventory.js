@@ -1,4 +1,4 @@
-const PRODUCTS = {
+export const PRODUCTS = {
     "cartier": [
         { name: "Bague Love", ref: "CRB4084600", priceEur: 2150, img: "images/love-ring.png" },
         { name: "Bague Juste un Clou", ref: "CRB4225900", priceEur: 1450, img: "images/clou-ring.png" },

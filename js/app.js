@@ -1,3 +1,5 @@
+import { PRODUCTS } from './inventory.js';
+
 // ─── CONFIGURATION ────────────────────────────────────────────────
 const WA_PHONE = "33745999118";
 const TRANSLATIONS = {
@@ -155,3 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tz.includes('Moscow')) { setCurrency('RUB', '₽'); setLanguage('ru'); }
     if (tz.includes('Almaty')) { setCurrency('KZT', '₸'); setLanguage('ru'); }
 });
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { smartRound, convertAndRound, formatPrice, TRANSLATIONS };
+} else if (typeof window !== 'undefined') {
+    window.smartRound = smartRound;
+    window.convertAndRound = convertAndRound;
+}
+export { smartRound, convertAndRound, formatPrice, TRANSLATIONS };

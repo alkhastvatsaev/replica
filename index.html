@@ -41,6 +41,11 @@
 
     <!-- SCRIPTS -->
     <script src="js/inventory.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js" type="module"></script>
+    <script>
+        // On expose openCheckout au global car il est appelé via onclick dans le HTML
+        import { openCheckout } from './js/app.js';
+        window.openCheckout = openCheckout;
+    </script>
 </body>
 </html>

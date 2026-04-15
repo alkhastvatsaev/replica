@@ -1,0 +1,29 @@
+{
+  "name": "cartier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sw.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alkhastvatsaev/replica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alkhastvatsaev/replica/issues"
+  },
+  "homepage": "https://github.com/alkhastvatsaev/replica#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "jsdom": "^29.0.2",
+    "vitest": "^4.1.4"
+  }
+}
