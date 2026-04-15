@@ -1,7 +1,7 @@
 // ─── CONFIGURATION ────────────────────────────────────────────────
 const WA_PHONE = "33745999118";
 const TRANSLATIONS = {
-    fr: { buy: "MESSAGE SELLER", wa_msg: "Bonjour, je suis intéressé par ce produit : " },
+    fr: { buy: "COMMANDER", wa_msg: "Bonjour, je suis intéressé par ce produit : " },
     en: { buy: "MESSAGE SELLER", wa_msg: "Hello, I am interested in this product: " },
     ru: { buy: "СВЯЗАТЬСЯ", wa_msg: "Здравствуйте, меня интересует этот товар: " },
     ar: { buy: "واصل المستشار", wa_msg: "مرحباً، أنا مهتم بهذا المنتج: " }

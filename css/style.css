@@ -81,7 +81,7 @@ header {
   font-weight: 900;
   font-size: 1.1rem;
   color: #000;
-  margin-top: 5px; /* Espace de 1mm environ */
+  margin-top: 10px; /* Plus d'espace car c'était encore trop serré */
 }
 
 .brand-divider {
@@ -107,6 +107,7 @@ header {
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 15px;
   padding: 20px 15px;
+  justify-content: center;
 }
 
 .product-card {
