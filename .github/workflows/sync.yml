@@ -1,0 +1,29 @@
+name: Auto-Sync Prices
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Tous les jours à 8h00 UTC
+  workflow_dispatch: # Permet de le lancer manuellement aussi depuis GitHub
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run Sync Script
+        run: python sync_prices_pro.py
+        env:
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "cron: auto-sync prices" && git push)
