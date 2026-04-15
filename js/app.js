@@ -106,7 +106,7 @@ function renderSection(brandID) {
                 </div>
                 <div class="wa-buy-btn ${brandID}" 
                      data-img="${p.img}" 
-                     onclick="openCheckout('${p.name}', ${p.priceEur / 2}, '${p.ref}')">
+                     onclick="openCheckout(event, '${p.name}', ${p.priceEur / 2}, '${p.ref}')">
                     <span>${TRANSLATIONS[currentLang].buy}</span>
                 </div>
             </div>
@@ -121,17 +121,22 @@ function renderAllSections() {
 }
 
 // ─── ACTIONS ────────────────────────────────────────────────────
-function openCheckout(name, salePriceEur, ref) {
-    const t = TRANSLATIONS[currentLang];
-    const priceLocal = convertAndRound(salePriceEur * 2); // Le prix converti est déjà -50%
+function openCheckout(event, name, salePriceEur, ref) {
+    if (event) event.preventDefault();
+    
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
+    const priceLocal = convertAndRound(salePriceEur * 2); 
     const priceStr = formatPrice(priceLocal);
     
-    const btn = event.currentTarget;
-    const imgPath = btn.getAttribute('data-img');
+    // Récupération sécurisée de l'image
+    const btn = event ? event.currentTarget : null;
+    const imgPath = btn ? btn.getAttribute('data-img') : 'images/logo.png';
     const imgUrl = `${window.location.origin}/${imgPath}`;
     
-    const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})\n\nPhoto : ${imgUrl}`;
-    window.location.href = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
+    const message = `${t.wa_msg} ${name.toUpperCase()}\nRéférence : ${ref}\nPrix : ${priceStr}\n\nLien photo : ${imgUrl}`;
+    
+    const waUrl = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
+    window.location.href = waUrl;
 }
 
 function setCurrency(curr, symbol) {
