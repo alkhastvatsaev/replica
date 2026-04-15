@@ -13,6 +13,19 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+img {
+  max-width: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.logo-img, .wa-buy-btn img {
+  pointer-events: auto;
+}
+
+
 html, body {
   width: 100vw;
   background-color: #f8f8f8;
