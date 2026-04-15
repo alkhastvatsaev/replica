@@ -223,6 +223,11 @@ header {
   color: #FFFFFF; /* Retour au blanc sobre */
 }
 
+/* Safran Bulgari */
+.wa-buy-btn.bulgari {
+  background-color: #C74B16;
+}
+
 .wa-buy-btn:active {
   transform: scale(0.95);
 }
