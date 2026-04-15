@@ -137,134 +137,49 @@
 
     </div>
 
-    <!-- Checkout Modal -->
-    <div class="modal-overlay" id="overlay" onclick="closeCheckout()"></div>
-    <div class="checkout-modal" id="checkout-modal">
-        <div class="modal-header">
-            <h3 data-i18n="order_title">Fiche de commande</h3>
-            <p id="selected-product"></p>
-        </div>
-        <div class="checkout-form">
-            <input type="text" id="cust-name" data-i18n-placeholder="name" placeholder="Nom complet" oninput="this.classList.remove('error')">
-            <input type="tel" id="cust-phone" data-i18n-placeholder="phone" placeholder="Numéro de téléphone" oninput="this.classList.remove('error')">
-            <input type="text" id="cust-address" data-i18n-placeholder="address" placeholder="Adresse complète" oninput="this.classList.remove('error')">
-            <input type="text" id="cust-city" data-i18n-placeholder="city" placeholder="Ville et Code Postal" oninput="this.classList.remove('error')">
-            
-            <div class="wa-confirm-btn" onclick="sendToWhatsApp()">
-                <span data-i18n="send">ENVOYER AU VENDEUR</span>
-            </div>
-        </div>
-    </div>
-
     <script>
         // ─── I18N CONFIG ────────────────────────────────────────────────
+        const WA_PHONE = "33745999118";
+        
         const TRANSLATIONS = {
             fr: {
                 buy: "MESSAGE SELLER",
-                order_title: "Fiche de commande",
-                name: "Nom complet",
-                phone: "Numéro de téléphone",
-                address: "Adresse complète",
-                city: "Ville et Code Postal",
-                send: "ENVOYER AU VENDEUR",
-                wa_hello: "Bonjour, voici ma commande",
-                wa_item: "Article",
-                wa_price: "Prix",
-                wa_client: "Client",
-                wa_tel: "Tél",
-                wa_address: "Adresse",
-                wa_thanks: "Merci !"
+                wa_msg: "Bonjour, je suis intéressé par ce produit : "
             },
             ru: {
                 buy: "НАПИСАТЬ ПРОДАВЦУ",
-                order_title: "Оформление заказа",
-                name: "Полное имя",
-                phone: "Номер телефона",
-                address: "Полный адрес",
-                city: "Город и индекс",
-                send: "ОТПРАВИТЬ ПРОДАВЦУ",
-                wa_hello: "Здравствуйте, вот мой заказ",
-                wa_item: "Товар",
-                wa_price: "Цена",
-                wa_client: "Клиент",
-                wa_tel: "Тел",
-                wa_address: "Адрес",
-                wa_thanks: "Спасибо!"
+                wa_msg: "Здравствуйте, меня интересует этот товар: "
             },
             en: {
                 buy: "MESSAGE SELLER",
-                order_title: "Order Details",
-                name: "Full name",
-                phone: "Phone number",
-                address: "Full address",
-                city: "City and Postal Code",
-                send: "SEND TO SELLER",
-                wa_hello: "Hello, here is my order",
-                wa_item: "Item",
-                wa_price: "Price",
-                wa_client: "Customer",
-                wa_tel: "Tel",
-                wa_address: "Address",
-                wa_thanks: "Thank you!"
+                wa_msg: "Hello, I am interested in this product: "
             },
             ar: {
                 buy: "مراسلة البائع",
-                order_title: "تفاصيل الطلب",
-                name: "الاسم الكامل",
-                phone: "رقم الهاتف",
-                address: "العنوان الكامل",
-                city: "المدينة والرمز البريدي",
-                send: "إرسال إلى البائع",
-                wa_hello: "مرحبًا، إليك طلبي",
-                wa_item: "المنتج",
-                wa_price: "السعر",
-                wa_client: "العميل",
-                wa_tel: "هاتف",
-                wa_address: "العنوان",
-                wa_thanks: "شكراً!"
+                wa_msg: "مرحباً، أنا مهتم بهذا المنتج: "
             }
         };
 
-        // Country → { lang, currency, symbol }
         const COUNTRY_MAP = {
-            // Francophone
             FR: { lang: 'fr', currency: 'EUR', symbol: '€' },
             BE: { lang: 'fr', currency: 'EUR', symbol: '€' },
-            CH: { lang: 'fr', currency: 'CHF', symbol: 'CHF' },
             MA: { lang: 'fr', currency: 'MAD', symbol: 'MAD' },
             DZ: { lang: 'fr', currency: 'DZD', symbol: 'DZD' },
-            TN: { lang: 'fr', currency: 'TND', symbol: 'TND' },
-            // Russophone
             RU: { lang: 'ru', currency: 'RUB', symbol: '₽' },
             KZ: { lang: 'ru', currency: 'KZT', symbol: '₸' },
-            UA: { lang: 'ru', currency: 'UAH', symbol: '₴' },
-            BY: { lang: 'ru', currency: 'BYN', symbol: 'BYN' },
-            UZ: { lang: 'ru', currency: 'UZS', symbol: 'UZS' },
-            // Anglophone
             GB: { lang: 'en', currency: 'GBP', symbol: '£' },
             US: { lang: 'en', currency: 'USD', symbol: '$' },
-            CA: { lang: 'en', currency: 'CAD', symbol: 'CA$' },
-            AU: { lang: 'en', currency: 'AUD', symbol: 'A$' },
-            // Arabophone
             AE: { lang: 'ar', currency: 'AED', symbol: 'AED' },
             SA: { lang: 'ar', currency: 'SAR', symbol: 'SAR' },
-            QA: { lang: 'ar', currency: 'QAR', symbol: 'QAR' },
-            KW: { lang: 'ar', currency: 'KWD', symbol: 'KWD' },
         };
 
-        // ─── STATE ───────────────────────────────────────────────────────
         let currentLang = 'fr';
         let currentCurrency = 'EUR';
         let currentSymbol = '€';
         let currentRates = { EUR: 1 };
-        let currentProduct = "";
-        let currentPriceEUR = 0;
-        let currentPriceConverted = 0;
 
-        // ─── INIT ────────────────────────────────────────────────────────
         async function init() {
             try {
-                // 1. Détection pays via IP
                 const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
                 const country = geo.country_code || 'FR';
                 const config = COUNTRY_MAP[country] || { lang: 'en', currency: 'EUR', symbol: '€' };
@@ -272,57 +187,31 @@
                 currentCurrency = config.currency;
                 currentSymbol = config.symbol;
 
-                // 2. Taux de change EUR → devise locale
                 if (currentCurrency !== 'EUR') {
                     const rates = await fetch(`https://open.er-api.com/v6/latest/EUR`).then(r => r.json());
                     if (rates.rates) currentRates = rates.rates;
                 }
 
-                // 3. Appliquer traductions + prix
                 applyLanguage(currentLang);
                 convertAllPrices();
 
-                // 4. RTL pour l'arabe
-                if (currentLang === 'ar') {
-                    document.documentElement.setAttribute('dir', 'rtl');
-                }
+                if (currentLang === 'ar') document.documentElement.setAttribute('dir', 'rtl');
 
             } catch (e) {
-                // Fallback silencieux → FR/EUR
-                console.log('Geoloc fallback:', e);
+                applyLanguage('fr');
             }
         }
 
         function applyLanguage(lang) {
             const t = TRANSLATIONS[lang] || TRANSLATIONS['fr'];
-
-            // Textes i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.textContent = t[key];
             });
 
-            // Placeholders i18n
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-
-            // Noms produits
             document.querySelectorAll('h2[data-name]').forEach(el => {
                 const name = el.getAttribute(`data-name-${lang}`) || el.getAttribute('data-name');
                 if (name) el.textContent = name;
-            });
-
-            // Onclick des boutons — mettre à jour le nom du produit aussi
-            document.querySelectorAll('[data-product]').forEach(btn => {
-                const product = btn.getAttribute('data-product');
-                const h2 = btn.closest('.product-card')?.querySelector('h2');
-                const priceSpan = btn.closest('.product-card')?.querySelector('.sale-price');
-                const eurPrice = priceSpan ? parseInt(priceSpan.getAttribute('data-eur')) : 0;
-                if (h2) {
-                    btn.onclick = () => openCheckout(h2.textContent, eurPrice);
-                }
             });
         }
 
@@ -337,84 +226,28 @@
 
         function convertAndRound(eurAmount, rate) {
             const raw = eurAmount * rate;
-            // Arrondir au 5 ou 0 le plus proche
             if (raw < 1000) return Math.round(raw / 5) * 5;
             if (raw < 10000) return Math.round(raw / 50) * 50;
             return Math.round(raw / 500) * 500;
         }
 
         function formatPrice(amount, symbol, currency) {
-            let formatted;
-            
-            // Si le montant est élevé (>= 10 000), on utilise le format "k"
-            if (amount >= 10000) {
-                const kValue = Math.round(amount / 1000);
-                formatted = `${kValue}k`;
-            } else {
-                // Sinon format standard avec séparateurs de milliers
-                formatted = amount.toLocaleString();
-            }
-
-            // Placement du symbole selon la devise
+            let formatted = (amount >= 10000) ? `${Math.round(amount / 1000)}k` : amount.toLocaleString();
             const symbolAfter = ['€', '₽', '₸', '₴'];
-            return symbolAfter.includes(symbol)
-                ? `${formatted} ${symbol}`
-                : `${symbol} ${formatted}`;
+            return symbolAfter.includes(symbol) ? `${formatted} ${symbol}` : `${symbol} ${formatted}`;
         }
 
-        // ─── CHECKOUT ────────────────────────────────────────────────────
+        // --- NOUVELLE FONCTION DIRECTE ---
         function openCheckout(name, eurPrice) {
-            currentProduct = name;
-            currentPriceEUR = eurPrice;
-            const rate = currentRates[currentCurrency] || 1;
-            currentPriceConverted = convertAndRound(eurPrice, rate);
-
-            const productLabel = `${name} — ${formatPrice(currentPriceConverted, currentSymbol, currentCurrency)}`;
-            document.getElementById('selected-product').innerText = productLabel.toUpperCase();
-            document.getElementById('checkout-modal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
-
-        function closeCheckout() {
-            document.getElementById('checkout-modal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
-
-        function sendToWhatsApp() {
-            const fields = [
-                document.getElementById('cust-name'),
-                document.getElementById('cust-phone'),
-                document.getElementById('cust-address'),
-                document.getElementById('cust-city')
-            ];
-
-            let hasError = false;
-            fields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('error');
-                    hasError = true;
-                } else {
-                    field.classList.remove('error');
-                }
-            });
-            if (hasError) return;
-
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
-            const priceStr = formatPrice(currentPriceConverted, currentSymbol, currentCurrency);
-
-            const message = `${t.wa_hello} :
-- ${t.wa_item} : ${currentProduct}
-- ${t.wa_price} : ${priceStr}
-- ${t.wa_client} : ${fields[0].value}
-- ${t.wa_tel} : ${fields[1].value}
-- ${t.wa_address} : ${fields[2].value}, ${fields[3].value}
-
-${t.wa_thanks}`;
-
-            window.open("https://wa.me/?text=" + encodeURIComponent(message), "_blank");
+            const rate = currentRates[currentCurrency] || 1;
+            const priceLocal = convertAndRound(eurPrice, rate);
+            const priceStr = formatPrice(priceLocal, currentSymbol, currentCurrency);
+            
+            const message = `${t.wa_msg} ${name.toUpperCase()} (${priceStr})`;
+            window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`, "_blank");
         }
 
-        // ─── START ───────────────────────────────────────────────────────
         init();
 
         if ('serviceWorker' in navigator) {
