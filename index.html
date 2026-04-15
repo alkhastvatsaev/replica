@@ -29,7 +29,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="1075">1 075 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="love" onclick="openCheckout('Bague Love', 1075)">
+                    <div class="wa-buy-btn cartier" data-product="love" data-ref="CRB4084600" onclick="openCheckout('Bague Love', 1075, 'CRB4084600')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="725">725 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="clou" onclick="openCheckout('Bague Juste un Clou', 725)">
+                    <div class="wa-buy-btn cartier" data-product="clou" data-ref="CRB4225900" onclick="openCheckout('Bague Juste un Clou', 725, 'CRB4225900')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="1275">1 275 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="clash" onclick="openCheckout('Bague Clash', 1275)">
+                    <div class="wa-buy-btn cartier" data-product="clash" data-ref="CRB4229800" onclick="openCheckout('Bague Clash', 1275, 'CRB4229800')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="3925">3 925 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="bracelet" onclick="openCheckout('Bracelet Love', 3925)">
+                    <div class="wa-buy-btn cartier" data-product="bracelet" data-ref="CRB6035517" onclick="openCheckout('Bracelet Love', 3925, 'CRB6035517')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="925">925 €</span>
                     </div>
-                    <div class="wa-buy-btn cartier" data-product="trinity" onclick="openCheckout('Bague Trinity', 925)">
+                    <div class="wa-buy-btn cartier" data-product="trinity" data-ref="CRB4052700" onclick="openCheckout('Bague Trinity', 925, 'CRB4052700')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="2625">2 625 €</span>
                     </div>
-                    <div class="wa-buy-btn vca" data-product="alhambra" onclick="openCheckout('Bracelet Alhambra', 2625)">
+                    <div class="wa-buy-btn vca" data-product="alhambra" data-ref="VCARA41800" onclick="openCheckout('Bracelet Alhambra', 2625, 'VCARA41800')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                     <div class="price-box">
                         <span class="sale-price" data-eur="3325">3 325 €</span>
                     </div>
-                    <div class="wa-buy-btn vca" data-product="reversible" onclick="openCheckout('Bague Réversible', 3325)">
+                    <div class="wa-buy-btn vca" data-product="reversible" data-ref="VCARPGV500" onclick="openCheckout('Bague Réversible', 3325, 'VCARPGV500')">
                         <span data-i18n="buy">MESSAGE SELLER</span>
                     </div>
                 </div>
@@ -237,14 +237,15 @@
             return symbolAfter.includes(symbol) ? `${formatted} ${symbol}` : `${symbol} ${formatted}`;
         }
 
-        // --- NOUVELLE FONCTION DIRECTE ---
-        function openCheckout(name, eurPrice) {
+        // --- FONCTION DIRECTE AVEC RÉFÉRENCE ---
+        function openCheckout(name, eurPrice, ref) {
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS['fr'];
             const rate = currentRates[currentCurrency] || 1;
             const priceLocal = convertAndRound(eurPrice, rate);
             const priceStr = formatPrice(priceLocal, currentSymbol, currentCurrency);
             
-            const message = `${t.wa_msg} ${name.toUpperCase()} (${priceStr})`;
+            // Nouveau format de message avec référence
+            const message = `${t.wa_msg} ${name.toUpperCase()} (Ref: ${ref} - ${priceStr})`;
             window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`, "_blank");
         }
 
