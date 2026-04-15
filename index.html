@@ -305,8 +305,17 @@
         }
 
         function formatPrice(amount, symbol, currency) {
-            // Formater avec séparateurs
-            const formatted = amount.toLocaleString();
+            let formatted;
+            
+            // Si le montant est élevé (>= 10 000), on utilise le format "k"
+            if (amount >= 10000) {
+                const kValue = Math.round(amount / 1000);
+                formatted = `${kValue}k`;
+            } else {
+                // Sinon format standard avec séparateurs de milliers
+                formatted = amount.toLocaleString();
+            }
+
             // Placement du symbole selon la devise
             const symbolAfter = ['€', '₽', '₸', '₴'];
             return symbolAfter.includes(symbol)
