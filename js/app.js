@@ -158,9 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tz.includes('Almaty')) { setCurrency('KZT', '₸'); setLanguage('ru'); }
 });
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { smartRound, convertAndRound, formatPrice, TRANSLATIONS };
+    module.exports = { smartRound, convertAndRound, formatPrice, TRANSLATIONS, openCheckout, setCurrency, setLanguage };
 } else if (typeof window !== 'undefined') {
     window.smartRound = smartRound;
     window.convertAndRound = convertAndRound;
+    window.openCheckout = openCheckout;
+    window.setCurrency = setCurrency;
+    window.setLanguage = setLanguage;
 }
-export { smartRound, convertAndRound, formatPrice, TRANSLATIONS };
+export { smartRound, convertAndRound, formatPrice, TRANSLATIONS, openCheckout, setCurrency, setLanguage };
