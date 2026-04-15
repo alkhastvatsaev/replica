@@ -47,7 +47,8 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: calc(env(safe-area-inset-top) + 44px);
+  /* On passe à 70px d'espace libre en dessous de la Dynamic Island */
+  height: calc(env(safe-area-inset-top) + 70px);
   padding-top: env(safe-area-inset-top);
   display: flex;
   justify-content: center;
