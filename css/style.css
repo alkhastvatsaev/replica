@@ -59,13 +59,13 @@ header {
 
 .logo-text {
   font-family: var(--font-title);
-  font-weight: 500; /* Medium, plus élégant que Bold */
-  font-size: 1rem;
-  letter-spacing: 0.4em; /* Très aéré, style luxe */
+  font-weight: 700; /* Bold élégant */
+  font-size: 1.1rem;
+  letter-spacing: 0.3em; /* Un peu moins d'espacement pour compenser le gras */
   color: #000;
   text-transform: uppercase;
   display: block;
-  margin-left: 0.4em; /* Pour centrer parfaitement malgré l'espace à droite */
+  margin-left: 0.3em;
 }
 
 .brand-divider {
