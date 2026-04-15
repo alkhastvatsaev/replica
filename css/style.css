@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-color: #FFFFFF;
+  --font-title: 'Montserrat', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100vw;
+  background-color: #f8f8f8;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+.app-viewport {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-weight: 300;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  color: #000;
+  text-transform: uppercase;
+  margin-right: -8px;
+}
+
+
+
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 15px;
+  padding: 20px 15px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 0.8s ease forwards;
+  position: relative; /* Pour positionner la REF en haut */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.img-container {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 12px;
+}
+
+.minimal-img {
+  width: 90%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.product-card:active .minimal-img {
+  transform: scale(0.95);
+}
+
+.serial-no {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.35rem;
+  letter-spacing: 1px;
+  color: #ccc; /* Très discret */
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.8);
+  padding: 2px 4px;
+}
+
+.product-card h2 {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #111;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  min-height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-row {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Recentrage horizontal */
+  align-items: center;
+  gap: 15px; /* Espace équilibré entre prix et bouton */
+  margin-top: 5px; /* Rapprochement vertical du titre */
+}
+
+.price-box {
+  text-align: center;
+}
+
+.sale-price {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.wa-buy-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  background-color: #1A6BFF;
+  color: #FFF;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: transform 0.1s ease;
+  cursor: pointer;
+}
+
+.wa-buy-btn:active {
+  transform: scale(0.95);
+}
+
+/* CHECKOUT MODAL */
+.checkout-modal {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background: white;
+  z-index: 2000;
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+  transition: bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-modal.active {
+  bottom: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
+  z-index: 1999;
+  display: none;
+}
+
+.modal-overlay.active {
+  display: block;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.modal-header h3 {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkout-form input {
+  padding: 15px;
+  border: 1px solid #f0f0f0;
+  border-radius: 0; /* Plus "Luxe" sans arrondis prononcés */
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  background: #fff;
+  text-transform: uppercase; /* Optionnel pour le look pro */
+  outline: none;
+  border-bottom: 1px solid #000;
+}
+
+.checkout-form input::placeholder {
+  color: #ccc;
+  letter-spacing: 2px;
+  font-size: 0.6rem;
+}
+
+.checkout-form .wa-confirm-btn {
+  background: #000;
+  color: #fff;
+  padding: 18px;
+  border-radius: 0;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.checkout-form input.error {
+  border-bottom: 2px solid #ff4d4d !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+.checkout-form input.error::placeholder {
+  color: #ff4d4d;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+}
+
+

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>CARTIER CATALOG</title>
+</head>
+<body>
+    <div class="app-viewport">
+        <header>
+            <div class="logo">REPLICA</div>
+        </header>
+
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="/images/love-ring.png" class="minimal-img" alt="Bague Love">
+                </div>
+                <h2>Bague Love</h2>
+                <div class="price-row">
+                    <div class="price-box">
+                        <span class="sale-price">945 €</span>
+                    </div>
+                    <div class="wa-buy-btn" onclick="openCheckout('Bague LOVE', 945)">
+                        MESSAGE SELLER
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="/images/clou-ring.png" class="minimal-img" alt="Bague Juste un Clou">
+                </div>
+                <h2>Bague Juste un Clou</h2>
+                <div class="price-row">
+                    <div class="price-box">
+                        <span class="sale-price">1 015 €</span>
+                    </div>
+                    <div class="wa-buy-btn" onclick="openCheckout('Bague Juste un Clou', 1015)">
+                        MESSAGE SELLER
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="/images/clash-ring.png" class="minimal-img" alt="Bague Clash">
+                </div>
+                <h2>Bague Clash de Cartier</h2>
+                <div class="price-row">
+                    <div class="price-box">
+                        <span class="sale-price">1 875 €</span>
+                    </div>
+                    <div class="wa-buy-btn" onclick="openCheckout('Bague Clash', 1875)">
+                        MESSAGE SELLER
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="/images/love-bracelet.png" class="minimal-img" alt="Bracelet Love">
+                </div>
+                <h2>Bracelet Love</h2>
+                <div class="price-row">
+                    <div class="price-box">
+                        <span class="sale-price">3 725 €</span>
+                    </div>
+                    <div class="wa-buy-btn" onclick="openCheckout('Bracelet Love', 3725)">
+                        MESSAGE SELLER
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="/images/trinity-ring.png" class="minimal-img" alt="Bague Trinity">
+                </div>
+                <h2>Bague Trinity</h2>
+                <div class="price-row">
+                    <div class="price-box">
+                        <span class="sale-price">1 015 €</span>
+                    </div>
+                    <div class="wa-buy-btn" onclick="openCheckout('Bague Trinity', 1015)">
+                        MESSAGE SELLER
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="overlay" onclick="closeCheckout()"></div>
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="modal-header">
+            <h3>Fiche de commande</h3>
+            <p id="selected-product" style="font-family: var(--font-title); font-size: 0.8rem; letter-spacing: 1px; color: #111; margin-top: 10px;"></p>
+        </div>
+        <div class="checkout-form">
+            <input type="text" id="cust-name" placeholder="Nom complet" oninput="this.classList.remove('error')">
+            <input type="tel" id="cust-phone" placeholder="Numéro de téléphone" oninput="this.classList.remove('error')">
+            <input type="text" id="cust-address" placeholder="Adresse complète" oninput="this.classList.remove('error')">
+            <input type="text" id="cust-city" placeholder="Ville et Code Postal" oninput="this.classList.remove('error')">
+            
+            <div class="wa-confirm-btn" onclick="sendToWhatsApp()">
+                ENVOYER AU VENDEUR
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentProduct = "";
+        let currentPrice = 0;
+
+        function openCheckout(name, price) {
+            currentProduct = name;
+            currentPrice = price;
+            document.getElementById('selected-product').innerText = name.toUpperCase();
+            document.getElementById('checkout-modal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function sendToWhatsApp() {
+            const fields = [
+                document.getElementById('cust-name'),
+                document.getElementById('cust-phone'),
+                document.getElementById('cust-address'),
+                document.getElementById('cust-city')
+            ];
+
+            let hasError = false;
+            fields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    hasError = true;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            if (hasError) return;
+
+            const name = fields[0].value;
+            const phone = fields[1].value;
+            const addr = fields[2].value;
+            const city = fields[3].value;
+
+            const message = `Bonjour, voici une nouvelle demande de commande :
+- Bijou : ${currentProduct}
+- Prix : ${currentPrice} €
+- Client : ${name}
+- Tél : ${phone}
+- Adresse : ${addr}, ${city}
+
+Merci !`;
+
+            const waUrl = "https://wa.me/?text=" + encodeURIComponent(message);
+            window.open(waUrl, "_blank");
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+        }
+    </script>
+</body>
+</html>
