@@ -33,17 +33,19 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: 90px;
+  height: 70px;
+  padding-top: env(safe-area-inset-top); /* Protection encoche iPhone */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid rgba(0,0,0,0.05);
 }
 
 .logo-img {
-  height: 35px;
+  height: 22px; /* Plus petit et élégant sur mobile */
   width: auto;
   display: block;
 }
@@ -120,23 +122,26 @@ header {
 }
 
 .price-row {
-  width: 100%;
   display: flex;
-  justify-content: center; /* Recentrage horizontal */
+  justify-content: space-between;
   align-items: center;
-  gap: 15px; /* Espace équilibré entre prix et bouton */
-  margin-top: 5px; /* Rapprochement vertical du titre */
+  width: 100%;
+  margin-top: 15px;
+  gap: 10px;
 }
 
 .price-box {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 60px;
 }
 
 .sale-price {
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #000;
+  white-space: nowrap;
 }
 
 .wa-buy-btn {
