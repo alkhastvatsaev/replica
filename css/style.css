@@ -50,6 +50,21 @@ header {
   display: block;
 }
 
+.brand-divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0 30px;
+  background-color: #f8f8f8;
+}
+
+.brand-divider img {
+  height: 25px;
+  width: auto;
+  opacity: 0.8;
+}
+
 
 
 
