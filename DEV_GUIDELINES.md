@@ -1,5 +1,9 @@
 # Maison 7 - Directives de Développement IA
 
+> [!IMPORTANT]
+> **MAINTENANCE QR CODE :** L'utilisateur prévoit de changer le domaine du site prochainement. Il faudra régénérer les tracés vectoriels du fichier `MAISON7_CARD_FOR_PRINT_ONLY.svg` avec la nouvelle URL dès qu'elle sera connue.
+
+
 ## 📱 Dimensions de Simulation (CRITIQUE)
 
 Toute simulation ou capture d'écran doit être effectuée avec les dimensions d'un iPhone réel :

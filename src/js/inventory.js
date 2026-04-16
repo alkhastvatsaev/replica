@@ -53,15 +53,15 @@ export const PRODUCTS = {
   ],
   bulgari: [
     {
-      name: 'Bague B.zero1 3-rangs',
+      name: 'Bague Serpenti Viper',
       ref: '360461',
-      priceEur: 3200,
+      priceEur: 7600,
       img: 'assets/products/bulgari/360461.png',
     },
     {
-      name: 'Bague B.zero1 1-rang',
+      name: 'Bracelet Serpenti Viper',
       ref: '360701',
-      priceEur: 1950,
+      priceEur: 18500,
       img: 'assets/products/bulgari/360701.png',
     },
     {
