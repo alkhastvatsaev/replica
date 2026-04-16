@@ -129,23 +129,75 @@ function renderSection(brandID) {
     .join('');
 }
 
+// --- GESTION DU QR CODE DYNAMIQUE ---
+function setupQRCode() {
+  const logo = document.getElementById('main-logo');
+  const overlay = document.getElementById('qr-overlay');
+  const qrContainer = document.getElementById('qr-container');
+
+  if (logo && overlay) {
+    logo.addEventListener('click', () => {
+      const now = new Date();
+      // On génère une clé basée sur l'année, mois, jour et heure actuelle
+      const hourKey =
+        now.getFullYear().toString() +
+        (now.getMonth() + 1).toString() +
+        now.getDate().toString() +
+        now.getHours().toString();
+      const accessUrl = window.location.origin + '/?access=' + hourKey;
+
+      // Utilisation d'une API gratuite pour le QR (simple et rapide)
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+        accessUrl
+      )}&color=000&bgcolor=fff`;
+
+      qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block;">`;
+      overlay.style.display = 'flex';
+
+      gsap.from(overlay, { opacity: 0, duration: 0.5 });
+    });
+
+    overlay.addEventListener('click', () => {
+      gsap.to(overlay, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => (overlay.style.display = 'none'),
+      });
+    });
+  }
+}
+
 function renderAllSections() {
   renderSection('cartier');
   renderSection('vca');
   renderSection('bulgari');
 
-  // Animation de révélation GSAP
-  gsap.from('.product-card', {
-    duration: 1,
-    opacity: 0,
-    y: 30,
-    stagger: 0.15,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.catalog-container',
-      start: 'top 80%',
-    },
-  });
+  setupQRCode();
+
+  // Gestion de la Gate
+  const enterBtn = document.getElementById('enter-button');
+  const gate = document.getElementById('entry-gate');
+
+  if (enterBtn && gate) {
+    enterBtn.addEventListener('click', () => {
+      gsap.to(gate, {
+        duration: 1.2,
+        opacity: 0,
+        pointerEvents: 'none',
+        ease: 'power4.inOut',
+        onComplete: () => {
+          // Animation de révélation des produits après la gate
+          gsap.from('.product-card', {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            stagger: 0.1,
+            ease: 'power2.out',
+          });
+        },
+      });
+    });
+  }
 }
 
 // ─── ACTIONS ────────────────────────────────────────────────────

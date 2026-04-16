@@ -12,9 +12,28 @@
     <title>MAISON 7</title>
   </head>
   <body>
+    <!-- LUXURY GATE (ENTRÉE PRIVÉE) -->
+    <div id="entry-gate">
+      <div class="gate-content">
+        <div class="logo-stack gate-logo">
+          <span class="logo-top">MAISON</span>
+          <span class="logo-bottom">7</span>
+        </div>
+        <p class="gate-subtitle">CONCIERGERIE PRIVÉE</p>
+        <button id="enter-button">ACCÉDER À LA SÉLECTION</button>
+      </div>
+    </div>
+
     <div class="app-viewport">
+      <!-- QR CODE OVERLAY -->
+      <div id="qr-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:20000; align-items:center; justify-content:center; flex-direction:column; color:white; cursor:pointer;">
+        <p style="letter-spacing:0.3em; font-size:0.7rem; margin-bottom:2rem;">ACCÈS ÉPHÉMÈRE - VALABLE 60 MIN</p>
+        <div id="qr-container" style="background:white; padding:15px; border-radius:10px;"></div>
+        <p style="margin-top:2rem; font-size:0.8rem; opacity:0.6;">Cliquez pour fermer</p>
+      </div>
+
       <header>
-        <div class="logo-stack">
+        <div class="logo-stack" id="main-logo" style="cursor:pointer;">
           <span class="logo-top">MAISON</span>
           <span class="logo-bottom">7</span>
         </div>

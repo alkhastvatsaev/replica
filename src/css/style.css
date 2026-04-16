@@ -368,3 +368,53 @@ header {
     transform: translateX(-8px);
   }
 }
+
+/* --- LUXURY GATE STYLES --- */
+#entry-gate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.gate-content {
+  opacity: 1;
+}
+
+.gate-logo {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.gate-subtitle {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+  color: #666;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+#enter-button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-transform: uppercase;
+}
+
+#enter-button:active {
+  transform: scale(0.95);
+}
