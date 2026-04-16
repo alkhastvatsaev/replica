@@ -42,7 +42,10 @@ async function autoDetectUser() {
 
     const country = geo.country_code; // FR, US, AE, RU, KZ...
 
-    if (['AE', 'QA', 'SA', 'OM'].includes(country)) {
+    if (country === 'FR') {
+      setCurrency('EUR', '€');
+      setLanguage('fr');
+    } else if (['AE', 'QA', 'SA', 'OM'].includes(country)) {
       setCurrency('AED', 'د.إ');
       setLanguage('ar');
     } else if (['RU', 'BY'].includes(country)) {
@@ -51,12 +54,10 @@ async function autoDetectUser() {
     } else if (['KZ'].includes(country)) {
       setCurrency('KZT', '₸');
       setLanguage('ru');
-    } else if (['US', 'GB', 'CA'].includes(country)) {
+    } else {
+      // International - English first / USD
       setCurrency('USD', '$');
       setLanguage('en');
-    } else {
-      setCurrency('EUR', '€');
-      setLanguage('fr');
     }
   } catch (e) {
     // Fallback sur le fuseau horaire si l'IP API échoue
