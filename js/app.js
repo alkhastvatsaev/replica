@@ -207,17 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage('ru');
   }
 });
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    smartRound,
-    convertAndRound,
-    formatPrice,
-    TRANSLATIONS,
-    openCheckout,
-    setCurrency,
-    setLanguage,
-  };
-} else if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined') {
   window.smartRound = smartRound;
   window.convertAndRound = convertAndRound;
   window.openCheckout = openCheckout;
