@@ -131,37 +131,33 @@ function renderSection(brandID) {
 
 // --- GESTION DU QR CODE DYNAMIQUE ---
 function setupQRCode() {
-  const logos = [document.getElementById('main-logo'), document.getElementById('gate-logo')];
+  const logo = document.getElementById('main-logo');
   const overlay = document.getElementById('qr-overlay');
   const qrContainer = document.getElementById('qr-container');
 
-  if (overlay && qrContainer) {
-    logos.forEach((logo) => {
-      if (logo) {
-        logo.addEventListener('click', () => {
-          const now = new Date();
-          const hourKey =
-            now.getFullYear().toString() +
-            (now.getMonth() + 1).toString() +
-            now.getDate().toString() +
-            now.getHours().toString();
-          const accessUrl = window.location.origin + '/?access=' + hourKey;
+  if (overlay && qrContainer && logo) {
+    logo.addEventListener('click', () => {
+      const now = new Date();
+      const hourKey =
+        now.getFullYear().toString() +
+        (now.getMonth() + 1).toString() +
+        now.getDate().toString() +
+        now.getHours().toString();
+      const accessUrl = window.location.origin + '/?access=' + hourKey;
 
-          const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
-            accessUrl
-          )}&color=000&bgcolor=fff`;
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+        accessUrl
+      )}&color=000&bgcolor=fff`;
 
-          qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block; width:100%; height:100%;">`;
-          overlay.style.display = 'flex';
-          
-          // Animation combinée : Fond flou + Carte qui surgit
-          gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
-          gsap.fromTo('.digital-card', 
-            { scale: 0.8, y: 40, opacity: 0 }, 
-            { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' }
-          );
-        });
-      }
+      qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block; width:100%; height:100%;">`;
+      overlay.style.display = 'flex';
+      
+      // Animation combinée : Fond flou + Carte qui surgit
+      gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+      gsap.fromTo('.digital-card', 
+        { scale: 0.8, y: 40, opacity: 0 }, 
+        { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' }
+      );
     });
 
     overlay.addEventListener('click', () => {
@@ -182,30 +178,14 @@ function renderAllSections() {
 
   setupQRCode();
 
-  // Gestion de la Gate
-  const enterBtn = document.getElementById('enter-button');
-  const gate = document.getElementById('entry-gate');
-
-  if (enterBtn && gate) {
-    enterBtn.addEventListener('click', () => {
-      gsap.to(gate, {
-        duration: 1.2,
-        opacity: 0,
-        pointerEvents: 'none',
-        ease: 'power4.inOut',
-        onComplete: () => {
-          // Animation de révélation des produits après la gate
-          gsap.from('.product-card', {
-            duration: 1,
-            opacity: 0,
-            y: 30,
-            stagger: 0.1,
-            ease: 'power2.out',
-          });
-        },
-      });
-    });
-  }
+  // Animation de révélation immédiate des produits
+  gsap.from('.product-card', {
+    duration: 1,
+    opacity: 0,
+    y: 30,
+    stagger: 0.1,
+    ease: 'power2.out',
+  });
 }
 
 // ─── ACTIONS ────────────────────────────────────────────────────
