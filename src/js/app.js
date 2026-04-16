@@ -161,14 +161,14 @@ function openCheckout(event, name, salePriceEur, ref) {
   const imgPath = btn ? btn.getAttribute('data-img') : 'images/logo.png';
   const imgUrl = `${window.location.origin}/${imgPath}`;
 
-  // Message structuré et luxueux
+  // Message structuré et professionnel (Style Conciergerie Luxe)
   const message =
-    `✨ *NOUVELLE DEMANDE - MAISON 7* ✨\n\n` +
-    `💍 *Produit* : ${name.toUpperCase()}\n` +
-    `🔢 *REF* : ${ref}\n` +
-    `🏷️ *Prix* : ${priceStr}\n\n` +
-    `📸 *Photo* : ${imgUrl}\n\n` +
-    `Je souhaite obtenir plus d'informations sur cette pièce.`;
+    `MAISON 7 - DEMANDE D'INFORMATION\n\n` +
+    `Produit : ${name.toUpperCase()}\n` +
+    `Référence : ${ref}\n` +
+    `Prix : ${priceStr}\n\n` +
+    `Consulter la pièce : ${imgUrl}\n\n` +
+    `Bonjour, je souhaiterais obtenir des informations complémentaires concernant cette pièce de votre catalogue.`;
 
   const waUrl = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
   window.location.href = waUrl;

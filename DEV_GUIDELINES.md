@@ -14,6 +14,10 @@ Toute simulation ou capture d'écran doit être effectuée avec les dimensions d
 - **Structure :** Utiliser `display: flex` avec `margin-top: auto` sur le bloc de prix pour garantir cet alignement.
 - **Hauteur des titres :** Toujours prévoir un `min-height` suffisant (actuellement `4.5em`) pour absorber les retours à la ligne sur mobile.
 
+## ✍️ Ton & Communication
+- **Zéro Emoji :** Interdiction stricte d'utiliser des emojis dans les messages sortants (WhatsApp, notifications). Cela nuit à l'image de marque luxe et peut paraître généré par IA.
+- **Style Conciergerie :** Utiliser des labels clairs, une ponctuation parfaite et un ton formel/courtois. Majuscules uniquement pour les en-têtes et les noms propres indispensables.
+
 ## 🛠 Tests Automatiques
 
 Les tests Playwright sont configurés sur **iPhone 17 Pro**. Ne pas modifier ces dimensions sans validation.
