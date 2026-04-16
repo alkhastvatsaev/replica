@@ -151,14 +151,21 @@ function setupQRCode() {
             accessUrl
           )}&color=000&bgcolor=fff`;
 
-          qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block;">`;
+          qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block; width:100%; height:100%;">`;
           overlay.style.display = 'flex';
-          gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+          
+          // Animation combinée : Fond flou + Carte qui surgit
+          gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+          gsap.fromTo('.digital-card', 
+            { scale: 0.8, y: 40, opacity: 0 }, 
+            { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' }
+          );
         });
       }
     });
 
     overlay.addEventListener('click', () => {
+      gsap.to('.digital-card', { scale: 0.8, opacity: 0, duration: 0.3 });
       gsap.to(overlay, {
         opacity: 0,
         duration: 0.3,
