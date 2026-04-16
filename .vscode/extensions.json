@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-playwright.playwright",
+    "vitest.explorer",
+    "antfu.vite",
+    "christian-kohler.path-intellisense",
+    "pinnate.pwa-tools"
+  ]
+}

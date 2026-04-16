@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-color: #FFFFFF;
+  --bg-color: #ffffff;
   --font-title: 'Montserrat', sans-serif;
   --font-sans: 'Montserrat', sans-serif;
 }
@@ -21,15 +21,16 @@ img {
   pointer-events: none;
 }
 
-.logo-img, .wa-buy-btn img {
+.logo-img,
+.wa-buy-btn img {
   pointer-events: auto;
 }
 
-
-html, body {
+html,
+body {
   width: 100vw;
   background-color: #f8f8f8;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   overflow-x: hidden;
   font-family: var(--font-sans);
   font-weight: 300;
@@ -54,7 +55,7 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
 }
 
@@ -90,7 +91,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 60px 0 30px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .brand-divider img {
@@ -100,12 +101,15 @@ header {
 }
 
 /* Logique de proportionnalité optique */
-.logo-cartier { height: 26px !important; } /* Script fin nécessite plus de hauteur */
-.logo-vca     { height: 22px !important; } /* Bloc dense nécessite moins de hauteur */
-.logo-bulgari { height: 18px !important; } /* Entre les deux */
-
-
-
+.logo-cartier {
+  height: 26px !important;
+} /* Script fin nécessite plus de hauteur */
+.logo-vca {
+  height: 22px !important;
+} /* Bloc dense nécessite moins de hauteur */
+.logo-bulgari {
+  height: 18px !important;
+} /* Entre les deux */
 
 .product-grid {
   display: grid;
@@ -121,12 +125,19 @@ header {
   align-items: center;
   text-align: center;
   animation: fadeIn 0.8s ease forwards;
-  position: relative; /* Pour positionner la REF en haut */
+  position: relative;
+  height: 100%; /* S'assure que la carte prend toute la hauteur de la ligne */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .img-container {
@@ -158,7 +169,7 @@ header {
   letter-spacing: 1px;
   color: #ccc; /* Très discret */
   text-transform: uppercase;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   padding: 2px 4px;
 }
 
@@ -169,20 +180,22 @@ header {
   letter-spacing: 1.5px;
   color: #111;
   text-transform: uppercase;
-  margin-bottom: 15px;
-  min-height: 2em;
+  margin-bottom: 5px; /* Réduit pour laisser flex-grow agir si besoin */
+  min-height: 4.5em; /* Supporte désormais jusqu'à 3-4 lignes sans décalage */
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .price-row {
   display: flex;
-  flex-direction: column; /* Prix au dessus du bouton pour un alignement parfait */
+  flex-direction: column;
   align-items: center;
   gap: 12px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: auto; /* Pousse le bloc prix/bouton vers le bas de la carte */
+  padding-top: 15px; /* Maintient un écart minimal avec le titre */
 }
 
 .price-box {
@@ -221,17 +234,17 @@ header {
 }
 
 .wa-buy-btn.vca {
-  background-color: #1B3022; /* Vert Forêt profond VCA */
+  background-color: #1b3022; /* Vert Forêt profond VCA */
   border: 0.5px solid rgba(225, 193, 110, 0.2);
 }
 
 .wa-buy-btn.vca span {
-  color: #FFFFFF; /* Retour au blanc sobre */
+  color: #ffffff; /* Retour au blanc sobre */
 }
 
 /* Safran Bulgari */
 .wa-buy-btn.bulgari {
-  background-color: #C74B16;
+  background-color: #c74b16;
 }
 
 .wa-buy-btn:active {
@@ -248,7 +261,7 @@ header {
   background: white;
   z-index: 2000;
   border-radius: 30px 30px 0 0;
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
   transition: bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   padding: 30px;
   display: flex;
@@ -265,7 +278,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   z-index: 1999;
   display: none;
@@ -341,10 +354,17 @@ header {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-8px); }
-  50% { transform: translateX(8px); }
-  75% { transform: translateX(-8px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  75% {
+    transform: translateX(-8px);
+  }
 }
-
-

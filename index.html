@@ -1,52 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>MAISON 7</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="app-viewport">
-        <header>
-            <div class="logo-stack">
-                <span class="logo-top">MAISON</span>
-                <span class="logo-bottom">7</span>
-            </div>
-        </header>
-
-        <div class="catalog-container">
-            <!-- CARTIER -->
-            <div class="brand-divider">
-                <img src="assets/logos/cartier.png" class="logo-cartier" alt="Cartier">
-            </div>
-            <div id="cartier-grid" class="product-grid"></div>
-
-            <!-- VAN CLEEF -->
-            <div class="brand-divider">
-                <img src="assets/logos/vca.jpg" class="logo-vca" alt="VCA">
-            </div>
-            <div id="vca-grid" class="product-grid"></div>
-
-            <!-- BULGARI -->
-            <div class="brand-divider">
-                <img src="assets/logos/bulgari.png" class="logo-bulgari" alt="Bulgari">
-            </div>
-            <div id="bulgari-grid" class="product-grid"></div>
+      <header>
+        <div class="logo-stack">
+          <span class="logo-top">MAISON</span>
+          <span class="logo-bottom">7</span>
         </div>
+      </header>
 
+      <div class="catalog-container">
+        <!-- CARTIER -->
+        <div class="brand-divider">
+          <img src="assets/logos/cartier.png" class="logo-cartier" alt="Cartier" />
+        </div>
+        <div id="cartier-grid" class="product-grid"></div>
+
+        <!-- VAN CLEEF -->
+        <div class="brand-divider">
+          <img src="assets/logos/vca.jpg" class="logo-vca" alt="VCA" />
+        </div>
+        <div id="vca-grid" class="product-grid"></div>
+
+        <!-- BULGARI -->
+        <div class="brand-divider">
+          <img src="assets/logos/bulgari.png" class="logo-bulgari" alt="Bulgari" />
+        </div>
+        <div id="bulgari-grid" class="product-grid"></div>
+      </div>
     </div>
 
+    <!-- PWA -->
+    <script src="/src/pwa.js" type="module"></script>
     <!-- SCRIPTS -->
     <script src="js/app.js" type="module"></script>
     <script>
-        // On expose openCheckout au global car il est appelé via onclick dans le HTML
-        import { openCheckout, setCurrency, setLanguage } from './js/app.js';
-        window.openCheckout = openCheckout;
-        window.setCurrency = setCurrency;
-        window.setLanguage = setLanguage;
+      // On expose openCheckout au global car il est appelé via onclick dans le HTML
+      import { openCheckout, setCurrency, setLanguage } from './js/app.js';
+      window.openCheckout = openCheckout;
+      window.setCurrency = setCurrency;
+      window.setLanguage = setLanguage;
     </script>
-</body>
+  </body>
 </html>

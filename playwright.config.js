@@ -11,8 +11,9 @@ export default defineConfig({
   projects: [
     {
       name: 'Mobile Safari',
-      use: { 
-        ...devices['iPhone 14 Pro'],
+      use: {
+        ...devices['iPhone 15 Pro'], // Utilisé comme base technique pour le rendu
+        viewport: { width: 393, height: 852 }, // Dimensions iPhone 17 Pro
         locale: 'fr-FR',
         timezoneId: 'Europe/Paris',
       },
