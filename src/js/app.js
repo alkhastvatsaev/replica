@@ -13,9 +13,9 @@ const TRANSLATIONS = {
   ar: { buy: 'واصل المستشار', wa_msg: 'مرحباً، أنا مهتم بهذا المنتج: ' },
 };
 
-let currentLang = 'fr';
-let currentCurrency = 'EUR';
-let currentSymbol = '€';
+let currentLang = 'en';
+let currentCurrency = 'USD';
+let currentSymbol = '$';
 let currentRates = { EUR: 1, USD: 1.08, AED: 3.97, RUB: 98.5, KZT: 485 };
 
 // ─── LOGIQUE DE CONVERSION & ARRONDIS ────────────────────────────
@@ -216,12 +216,12 @@ function openCheckout(event, name, salePriceEur, ref) {
 
   // Message structuré et professionnel (Style Conciergerie Luxe)
   const message =
-    `MAISON 7 - DEMANDE D'INFORMATION\n\n` +
-    `Produit : ${name.toUpperCase()}\n` +
-    `Référence : ${ref}\n` +
-    `Prix : ${priceStr}\n\n` +
-    `Consulter la pièce : ${imgUrl}\n\n` +
-    `Bonjour, je souhaiterais obtenir des informations complémentaires concernant cette pièce de votre catalogue.`;
+    `MAISON 7\n\n` +
+    `Item : ${name.toUpperCase()}\n` +
+    `Ref : ${ref}\n` +
+    `Price : ${priceStr}\n\n` +
+    `View : ${imgUrl}\n\n` +
+    `I would like more information regarding this piece.`;
 
   const waUrl = `https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(message)}`;
   window.location.href = waUrl;
