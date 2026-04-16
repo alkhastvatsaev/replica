@@ -5,19 +5,16 @@
     <title>Carte VIP Maison 7</title>
     <style>
         body { background: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { width: 350px; height: 200px; background: #000; color: #fff; border-radius: 12px; position: relative; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); font-family: 'Inter', sans-serif; }
-        .logo { font-size: 1.2rem; letter-spacing: 0.4em; }
-        .vip-label { position: absolute; bottom: 25px; left: 25px; font-size: 0.6rem; letter-spacing: 0.5em; color: #888; }
-        .qr-container { position: absolute; bottom: 25px; right: 25px; width: 70px; height: 70px; background: #fff; padding: 5px; border-radius: 6px; }
+        .card { width: 350px; height: 450px; background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); font-family: 'Inter', sans-serif; }
+        .logo { font-size: 1.5rem; letter-spacing: 0.5em; margin-bottom: 40px; }
+        .qr-container { width: 120px; height: 120px; background: #fff; padding: 10px; border-radius: 0; }
     </style>
 </head>
 <body>
     <div class="card">
         <div class="logo">MAISON 7</div>
-        <div style="margin-top: 40px; font-size: 0.8rem; letter-spacing: 0.1em; color: #ccc;">MEMBRE PRIVILÉGIÉ</div>
-        <div class="vip-label">CONCIERGERIE PRIVÉE</div>
         <div class="qr-container">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maison-7.vercel.app/merci.html&color=000&bgcolor=fff" alt="QR Code" style="width: 100%; height: 100%; display: block; border-radius: 4px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://maison-7.vercel.app/merci.html&color=000&bgcolor=fff" alt="QR Code" style="width: 100%; height: 100%; display: block;">
         </div>
     </div>
 </body>
