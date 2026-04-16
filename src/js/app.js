@@ -153,7 +153,7 @@ function setupQRCode() {
 
           qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block;">`;
           overlay.style.display = 'flex';
-          gsap.from(overlay, { opacity: 0, duration: 0.5 });
+          gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.5 });
         });
       }
     });
