@@ -7,10 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 // ─── CONFIGURATION ────────────────────────────────────────────────
 const WA_PHONE = '33745999118';
 const TRANSLATIONS = {
-  fr: { buy: 'COMMANDER', wa_msg: 'Bonjour, je suis intéressé par ce produit : ' },
-  en: { buy: 'MESSAGE SELLER', wa_msg: 'Hello, I am interested in this product: ' },
-  ru: { buy: 'СВЯЗАТЬСЯ', wa_msg: 'Здравствуйте, меня интересует этот товар: ' },
-  ar: { buy: 'واصل المستشار', wa_msg: 'مرحباً، أنا مهتم بهذا المنتج: ' },
+  fr: { buy: 'CONTACTER', wa_msg: 'Bonjour, je suis intéressé par cette pièce : ' },
+  en: { buy: 'CONTACT', wa_msg: 'Hello, I am interested in this item: ' },
+  ru: { buy: 'СВЯЗАТЬСЯ', wa_msg: 'Здравствуйте, меня интересует это изделие: ' },
+  ar: { buy: 'اتصال', wa_msg: 'مرحباً، أنا مهتم بهذه القطعة: ' },
 };
 
 let currentLang = 'en';
