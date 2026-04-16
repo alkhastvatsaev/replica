@@ -131,30 +131,31 @@ function renderSection(brandID) {
 
 // --- GESTION DU QR CODE DYNAMIQUE ---
 function setupQRCode() {
-  const logo = document.getElementById('main-logo');
+  const logos = [document.getElementById('main-logo'), document.getElementById('gate-logo')];
   const overlay = document.getElementById('qr-overlay');
   const qrContainer = document.getElementById('qr-container');
 
-  if (logo && overlay) {
-    logo.addEventListener('click', () => {
-      const now = new Date();
-      // On génère une clé basée sur l'année, mois, jour et heure actuelle
-      const hourKey =
-        now.getFullYear().toString() +
-        (now.getMonth() + 1).toString() +
-        now.getDate().toString() +
-        now.getHours().toString();
-      const accessUrl = window.location.origin + '/?access=' + hourKey;
+  if (overlay && qrContainer) {
+    logos.forEach((logo) => {
+      if (logo) {
+        logo.addEventListener('click', () => {
+          const now = new Date();
+          const hourKey =
+            now.getFullYear().toString() +
+            (now.getMonth() + 1).toString() +
+            now.getDate().toString() +
+            now.getHours().toString();
+          const accessUrl = window.location.origin + '/?access=' + hourKey;
 
-      // Utilisation d'une API gratuite pour le QR (simple et rapide)
-      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
-        accessUrl
-      )}&color=000&bgcolor=fff`;
+          const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+            accessUrl
+          )}&color=000&bgcolor=fff`;
 
-      qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block;">`;
-      overlay.style.display = 'flex';
-
-      gsap.from(overlay, { opacity: 0, duration: 0.5 });
+          qrContainer.innerHTML = `<img src="${qrImageUrl}" alt="QR Access" style="display:block;">`;
+          overlay.style.display = 'flex';
+          gsap.from(overlay, { opacity: 0, duration: 0.5 });
+        });
+      }
     });
 
     overlay.addEventListener('click', () => {
