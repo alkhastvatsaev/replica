@@ -55,13 +55,13 @@ export const PRODUCTS = {
     {
       name: 'Bague Serpenti Viper',
       ref: '360461',
-      priceEur: 7600,
+      priceEur: 4450,
       img: 'assets/products/bulgari/360461.png',
     },
     {
       name: 'Bracelet Serpenti Viper',
       ref: '360701',
-      priceEur: 18500,
+      priceEur: 13600,
       img: 'assets/products/bulgari/360701.png',
     },
     {
